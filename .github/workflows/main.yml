@@ -31,6 +31,7 @@ jobs:
         node-version: '16'
     - run: yarn install --frozen-lockfile
     - run: yarn build
+    - run: git subtree push --prefix dist origin gh-pages
 
-    - name: Push static site file to gh-pages branch
-      run: git subtree push --prefix dist origin gh-pages
+#     - name: Push static site file to gh-pages branch
+#       run: git subtree push --prefix dist origin gh-pages
