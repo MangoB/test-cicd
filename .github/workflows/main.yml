@@ -25,13 +25,25 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Generate Vue static site
-      uses: actions/setup-node@v2
+#     - name: Setup Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '16'
+      
+#     - name: Generate Vue static site
+#       run: yarn install --frozen-lockfile
+# #     - run: yarn build
+# #     - run: yarn deploy
+    - name: Install and Build
+      run: |
+        yarn install --frozen-lockfile
+        yarn build
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        node-version: '16'
-    - run: yarn install --frozen-lockfile
-#     - run: yarn build
-    - run: yarn deploy
+        folder: build # The folder the action should deploy.
+        branch: gh-pages
 
 #     - name: Push static site file to gh-pages branch
 #       run: git subtree push --prefix dist origin gh-pages
